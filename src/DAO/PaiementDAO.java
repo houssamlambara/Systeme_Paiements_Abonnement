@@ -1,20 +1,23 @@
 package DAO;
 
+import model.Paiement;
+import java.util.List;
+
 public interface PaiementDAO {
 
-    public void create();
+    void create(Paiement paiement) throws Exception;
 
-    public void findById();
+    Paiement findById(String id) throws Exception;
 
-    public void findByAbonnement();
+    List<Paiement> findByAbonnement(String idAbonnement) throws Exception;
 
-    public void findAll();
+    List<Paiement> findAll() throws Exception;
 
-    public void update();
+    void update(Paiement paiement) throws Exception;
 
-    public void delete();
+    void delete(String id) throws Exception;
 
-    public void findUnpaidByAbonnement();
+    List<Paiement> findUnpaidByAbonnement(String idAbonnement) throws Exception;
 
-    public void findLastPayments();
+    List<Paiement> findLastPayments(int n) throws Exception;
 }

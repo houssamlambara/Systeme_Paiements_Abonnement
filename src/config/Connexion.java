@@ -2,13 +2,12 @@ package config;
 
 import java.sql.*;
 import java.sql.DriverManager;
-import java.util.UUID;
 
 public class Connexion {
 
     private String url = "jdbc:mysql://localhost:3306/systeme_abonnement";
-        private String usertName = "root";
-        private String pass = "root";
+        private String username = "root";
+        private String password = "root";
 
         public static Connexion instance = null;
         private Connection connection = null;
@@ -21,7 +20,7 @@ public class Connexion {
 
         private Connexion() {
             try {
-                connection = DriverManager.getConnection(url, usertName, pass);
+                connection = DriverManager.getConnection(url, username, password);
                 System.out.println("Database connected successfully");
             } catch (SQLException e) {
                 throw new RuntimeException(e);

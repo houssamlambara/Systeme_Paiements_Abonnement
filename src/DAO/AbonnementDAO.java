@@ -1,19 +1,21 @@
 package DAO;
 
+import model.Abonnement;
+import java.util.List;
 
 public interface AbonnementDAO {
 
-    public void create();
+    void create(Abonnement abonnement) throws Exception;
 
-    public void findById();
+    Abonnement findById(String id) throws Exception;
 
-    public void findAll();
+    List<Abonnement> findAll() throws Exception;
 
-    public void update();
+    void update(Abonnement abonnement) throws Exception;
 
-    public void delete();
+    void delete(String id) throws Exception;
 
-    public void findActiveSubscriptions();
+    List<Abonnement> findActiveAbonnement() throws Exception;
 
-    public void findByType();
+    List<Abonnement> findByType(String typeAbonnement) throws Exception;
 }
