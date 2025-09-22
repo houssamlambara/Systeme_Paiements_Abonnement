@@ -1,13 +1,17 @@
 package model;
 
+import enums.StatutAbonnement;
+import java.util.Date;
+import java.util.UUID;
 
-public class AbonnementAvecEngagement extends Abonnement{
+public class AbonnementAvecEngagement extends Abonnement {
     private Integer dureeEngagementMois;
 
-    public AbonnementAvecEngagement(String nomService, Double montantMensuel, Integer dureeEngagementMois) {
-        super(nomService, montantMensuel);
+    public AbonnementAvecEngagement(String nomService, Double montantMensuel,
+                                    Date dateDebut, Date dateFin, StatutAbonnement statut,
+                                    Integer dureeEngagementMois) {
+        super(UUID.randomUUID(), nomService, montantMensuel, dateDebut, dateFin, statut);
         this.dureeEngagementMois = dureeEngagementMois;
-
     }
 
     public Integer getDureeEngagementMois() {
@@ -16,5 +20,10 @@ public class AbonnementAvecEngagement extends Abonnement{
 
     public void setDureeEngagementMois(Integer dureeEngagementMois) {
         this.dureeEngagementMois = dureeEngagementMois;
+    }
+
+    @Override
+    public String getTypeAbonnement() {
+        return "AvecEngagement";
     }
 }

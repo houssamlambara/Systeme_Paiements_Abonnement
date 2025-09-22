@@ -14,8 +14,20 @@ public abstract class Abonnement {
     private StatutAbonnement statut = null;
 
     public Abonnement(String nomService, Double montantMensuel){
+        this.id = UUID.randomUUID();
         this.nomService = nomService;
         this.montantMensuel = montantMensuel;
+        this.statut =StatutAbonnement.ACTIVE;
+    }
+
+    public Abonnement(UUID id, String nomService, Double montantMensuel, Date dateDebut, Date dateFin, StatutAbonnement statut){
+        this.id = id;
+        this.nomService = nomService;
+        this.montantMensuel = montantMensuel;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.statut = statut;
+
     }
 
     public UUID getId() {
@@ -57,4 +69,16 @@ public abstract class Abonnement {
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }
+
+    public StatutAbonnement getStatut() {
+        return statut;
+    }
+
+    public void setStatut(StatutAbonnement statut) {
+        this.statut = statut;
+    }
+
+    public abstract String getTypeAbonnement();
+
+
 }

@@ -1,9 +1,18 @@
 package model;
 
-public class AbonnementSansEngagement extends Abonnement{
+import enums.StatutAbonnement;
+import java.util.Date;
+import java.util.UUID;
 
-    public AbonnementSansEngagement(String nomService, Double montantMensuel) {
-        super(nomService, montantMensuel);
+public class AbonnementSansEngagement extends Abonnement {
+
+    public AbonnementSansEngagement(String nomService, Double montantMensuel,
+                                    Date dateDebut, Date dateFin, StatutAbonnement statut) {
+        super(UUID.randomUUID(), nomService, montantMensuel, dateDebut, dateFin, statut);
     }
 
+    @Override
+    public String getTypeAbonnement() {
+        return "SansEngagement";
+    }
 }
