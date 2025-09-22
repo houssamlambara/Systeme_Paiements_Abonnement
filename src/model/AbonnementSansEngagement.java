@@ -8,7 +8,7 @@ public class AbonnementSansEngagement extends Abonnement {
 
     public AbonnementSansEngagement(String nomService, Double montantMensuel,
                                     Date dateDebut, Date dateFin, StatutAbonnement statut) {
-        super(UUID.randomUUID(), nomService, montantMensuel, dateDebut, dateFin, statut);
+        super(nomService, montantMensuel, dateDebut, dateFin, statut);
     }
 
     @Override

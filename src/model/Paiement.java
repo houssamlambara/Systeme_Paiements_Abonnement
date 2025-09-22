@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Paiement {
-    private String idPaiement;
+    private UUID idPaiement;
     private String idAbonnement;
     private Date dateEcheance;
     private Date datePaiement;
@@ -14,15 +14,15 @@ public class Paiement {
     private StatutPaiement statut = null;
 
     public Paiement(String idAbonnement, Date dateEcheance, String typePaiement){
-        this.idPaiement = UUID.randomUUID().toString();
+        this.idPaiement = UUID.randomUUID();
         this.idAbonnement = idAbonnement;
         this.dateEcheance = dateEcheance;
         this.typePaiement = typePaiement;
         this.statut = StatutPaiement.NON_PAYE;
     }
 
-    public Paiement(String idPaiement, String idAbonnement, Date dateEcheance, Date datePaiement, String typePaiement, StatutPaiement statut) {
-        this.idPaiement = idPaiement;
+    public Paiement( String idAbonnement, Date dateEcheance, Date datePaiement, String typePaiement, StatutPaiement statut) {
+        this.idPaiement = UUID.randomUUID();
         this.idAbonnement = idAbonnement;
         this.dateEcheance = dateEcheance;
         this.datePaiement = datePaiement;
@@ -30,11 +30,11 @@ public class Paiement {
         this.statut = statut;
     }
 
-    public String getIdPaiement() {
+    public UUID getIdPaiement() {
         return idPaiement;
     }
 
-    public void setIdPaiement(String idPaiement) {
+    public void setIdPaiement(UUID idPaiement) {
         this.idPaiement = idPaiement;
     }
 

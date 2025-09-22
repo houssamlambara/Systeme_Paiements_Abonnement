@@ -20,8 +20,8 @@ public abstract class Abonnement {
         this.statut =StatutAbonnement.ACTIVE;
     }
 
-    public Abonnement(UUID id, String nomService, Double montantMensuel, Date dateDebut, Date dateFin, StatutAbonnement statut){
-        this.id = id;
+    public Abonnement(String nomService, Double montantMensuel, Date dateDebut, Date dateFin, StatutAbonnement statut){
+        this.id = UUID.randomUUID();
         this.nomService = nomService;
         this.montantMensuel = montantMensuel;
         this.dateDebut = dateDebut;

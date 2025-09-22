@@ -1,20 +1,32 @@
 package service;
 
-public interface AbonnementService {
+public class AbonnementService {
 
-    public void creerAbonnement();
+    public void creerAbonnement(){
 
-    public void modifierAbonnement();
+    };
 
-    public void supprimerAbonnement();
+    public void modifierAbonnement(){
 
-    public void resilierAbonnement();
+    };
 
-    public void listerTous();
+    public void supprimerAbonnement(){
 
-    public void listerActifs();
+    };
 
-    public void genererEcheances();
+    public void resilierAbonnement(){
 
+    };
 
+    public void listerTous(){
+
+    };
+
+    public void listerActifs(){
+
+    };
+
+    public void genererEcheances(){
+
+    };
 }
