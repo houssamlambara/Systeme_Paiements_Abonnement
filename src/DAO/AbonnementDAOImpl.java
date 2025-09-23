@@ -50,18 +50,16 @@ public class AbonnementDAOImpl implements AbonnementDAO {
             stmt.setString(2, abonnement.getNomService());
             stmt.setDouble(3, abonnement.getMontantMensuel());
             stmt.setDate(4, new java.sql.Date(abonnement.getDateDebut().getTime()));
-            stmt.setDate(5, abonnement.getDateFin() != null ? new java.sql.Date(abonnement.getDateFin().getTime()) : null);
+            stmt.setNull(5, java.sql.Types.DATE);
             stmt.setString(6, abonnement.getStatut().name());
             stmt.setString(7, abonnement.getTypeAbonnement());
-            stmt.setInt(8, 0);
+            stmt.setNull(8, java.sql.Types.INTEGER);
             stmt.executeUpdate();
             System.out.println("Abonnement sans engagement inséré avec succès");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-
 
 
     @Override
