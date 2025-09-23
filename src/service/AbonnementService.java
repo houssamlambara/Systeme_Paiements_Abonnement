@@ -21,6 +21,12 @@ public class AbonnementService {
 
     };
 
+    public void creeAbonnementSansEngagement(String nomService, Double montantMensuel) throws Exception {
+        AbonnementSansEngagement abonnementSansEngagement = new AbonnementSansEngagement(nomService,montantMensuel);
+        abonnementDAO.create(abonnementSansEngagement);
+
+    }
+
     public void modifierAbonnement(){
 
     };

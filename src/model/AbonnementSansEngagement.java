@@ -9,7 +9,7 @@ public class AbonnementSansEngagement extends Abonnement {
     public AbonnementSansEngagement(String nomService, Double montantMensuel) {
         super(nomService, montantMensuel);
         this.setDateDebut(new Date());
-        this.setDateFin(null);
+        this.setDateFin(new Date());
     }
 
     @Override

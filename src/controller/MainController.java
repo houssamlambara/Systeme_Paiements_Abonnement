@@ -15,13 +15,13 @@ public class MainController {
     MenuUi menu = new MenuUi();
     AbonnementController abonnementController = new AbonnementController();
 
-    public MainController(Integer choix) {
+    public MainController(Integer choix) throws Exception {
 
         traitementOption(choix);
     }
 
 
-    public void traitementOption(Integer choix) {
+    public void traitementOption(Integer choix) throws Exception {
         switch (choix) {
             case 1:
                 menuCreationAbonnement();
@@ -38,7 +38,7 @@ public class MainController {
 
     }
 
-    private void menuCreationAbonnement() {
+    private void menuCreationAbonnement() throws Exception {
 
         Integer choix = menu.menuCreationAbonnement();
         switch (choix) {
@@ -101,8 +101,6 @@ public class MainController {
         String nomService = scanner.nextLine();
         System.out.println("Entre le montant : ");
         Double montantMensuel = scanner.nextDouble();
-        Integer type = menu.menuCreationAbonnement();
-
         System.out.println("Entrer la date de fin (dd-MM-yyyy): ");
         String strDate = scanner.next();
         System.out.println("Entrer la duree dengagement :");
@@ -117,15 +115,13 @@ public class MainController {
 
     };
 
-    public void creeAbonnementSansEngagement(){
+    public void creeAbonnementSansEngagement() throws Exception {
         System.out.println("Entre le nom de service :");
-        scanner.nextLine(); // consommer le retour à la ligne
         String nomService = scanner.nextLine();
-
         System.out.println("Entre le montant : ");
         Double montantMensuel = scanner.nextDouble();
 
-//        abonnementController.creeAbonnementSansEngagement(nomService, montantMensuel);
+        abonnementController.creeAbonnementSansEngagement(nomService, montantMensuel);
 
     }
 

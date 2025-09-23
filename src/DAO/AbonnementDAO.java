@@ -2,12 +2,15 @@ package DAO;
 
 import model.Abonnement;
 import model.AbonnementAvecEngagement;
+import model.AbonnementSansEngagement;
 
 import java.util.List;
 
 public interface AbonnementDAO {
 
     void create(AbonnementAvecEngagement abonnement) throws Exception;
+
+    void create(AbonnementSansEngagement abonnement) throws Exception;
 
     Abonnement findById(String id) throws Exception;
 

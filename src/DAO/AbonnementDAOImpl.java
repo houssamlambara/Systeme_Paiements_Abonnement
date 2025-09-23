@@ -3,6 +3,7 @@ package DAO;
 import config.Connexion;
 import model.Abonnement;
 import model.AbonnementAvecEngagement;
+import model.AbonnementSansEngagement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,6 +38,30 @@ public class AbonnementDAOImpl implements AbonnementDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void create(AbonnementSansEngagement abonnement) {
+        String sql = "INSERT INTO Abonnement (id, nomService, montantMensuel, dateDebut, dateFin, statut, typeAbonnement, dureeEngagementMois) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            if (abonnement.getId() == null) abonnement.setId(java.util.UUID.randomUUID());
+            stmt.setString(1, abonnement.getId().toString());
+            stmt.setString(2, abonnement.getNomService());
+            stmt.setDouble(3, abonnement.getMontantMensuel());
+            stmt.setDate(4, new java.sql.Date(abonnement.getDateDebut().getTime()));
+            stmt.setDate(5, abonnement.getDateFin() != null ? new java.sql.Date(abonnement.getDateFin().getTime()) : null);
+            stmt.setString(6, abonnement.getStatut().name());
+            stmt.setString(7, abonnement.getTypeAbonnement());
+            stmt.setInt(8, 0);
+            stmt.executeUpdate();
+            System.out.println("Abonnement sans engagement inséré avec succès");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
     @Override

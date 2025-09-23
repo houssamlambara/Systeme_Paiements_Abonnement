@@ -16,4 +16,8 @@ public class AbonnementController {
              dureeEngagementMois);
     }
 
+    public void creeAbonnementSansEngagement(String nomService, Double montantMensuel) throws Exception {
+        abonnementService.creeAbonnementSansEngagement(nomService, montantMensuel);
+    }
+
 }
