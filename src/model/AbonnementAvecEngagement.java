@@ -7,9 +7,9 @@ public class AbonnementAvecEngagement extends Abonnement {
     private Integer dureeEngagementMois;
 
     public AbonnementAvecEngagement(String nomService, Double montantMensuel,
-                                    Date dateDebut, Date dateFin, StatutAbonnement statut,
+                                    Date dateFin,
                                     Integer dureeEngagementMois) {
-        super(nomService, montantMensuel, dateDebut, dateFin, statut);
+        super(nomService, montantMensuel, dateFin);
         this.dureeEngagementMois = dureeEngagementMois;
     }
 

@@ -11,23 +11,21 @@ public abstract class Abonnement {
     private Double montantMensuel;
     private Date dateDebut;
     private Date dateFin;
-    private StatutAbonnement statut = null;
+    private StatutAbonnement statut = StatutAbonnement.ACTIF;
 
     public Abonnement(String nomService, Double montantMensuel){
         this.id = UUID.randomUUID();
         this.nomService = nomService;
         this.montantMensuel = montantMensuel;
-        this.statut =StatutAbonnement.ACTIVE;
+        this.statut =StatutAbonnement.ACTIF;
     }
 
-    public Abonnement(String nomService, Double montantMensuel, Date dateDebut, Date dateFin, StatutAbonnement statut){
+    public Abonnement(String nomService, Double montantMensuel, Date dateFin){
         this.id = UUID.randomUUID();
         this.nomService = nomService;
         this.montantMensuel = montantMensuel;
-        this.dateDebut = dateDebut;
+        this.dateDebut = new Date();
         this.dateFin = dateFin;
-        this.statut = statut;
-
     }
 
     public UUID getId() {

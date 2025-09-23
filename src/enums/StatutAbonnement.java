@@ -1,8 +1,7 @@
 package enums;
 
 public enum StatutAbonnement {
-    ACTIVE,
-    SUSPENDU,
+    ACTIF,
+    INACTIF,
     RESILIE;
-
 }

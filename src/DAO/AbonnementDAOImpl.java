@@ -14,15 +14,30 @@ public class AbonnementDAOImpl implements AbonnementDAO {
 
     private Connection connection;
 
-    public AbonnementDAOImpl() throws Exception{
+    public AbonnementDAOImpl(){
         this.connection = Connexion.getInstance().getConnection();
     }
 
     @Override
-    public void create(Abonnement abonnement) throws Exception {
+    public void create(AbonnementAvecEngagement abonnement){
+        String sql = "INSERT INTO Abonnement (id, nomService, montantMensuel, dateDebut, dateFin, statut, typeAbonnement, dureeEngagementMois) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, abonnement.getId().toString());
+            stmt.setString(2, abonnement.getNomService());
+            stmt.setDouble(3, abonnement.getMontantMensuel());
+            stmt.setDate(4, new java.sql.Date(abonnement.getDateDebut().getTime()));
+            stmt.setDate(5, new java.sql.Date(abonnement.getDateFin().getTime()));
+            stmt.setString(6, abonnement.getStatut().name());
+            stmt.setString(7, abonnement.getTypeAbonnement());
+            stmt.setInt(8, abonnement.getDureeEngagementMois());
+            stmt.executeUpdate();
+            System.out.println("Abonnement inséré avec succès");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
+
 
     @Override
     public Abonnement findById(String id) throws Exception {
