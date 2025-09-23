@@ -62,7 +62,7 @@ public class MainController {
 
         switch (choix) {
             case 1:
-                System.out.println("Liste des abonnements...");
+                abonnementController.afficherTousLesAbonnements();
                 break;
             case 2:
                 modifierAbonnement();

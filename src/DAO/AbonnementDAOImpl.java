@@ -5,11 +5,12 @@ import model.Abonnement;
 import model.AbonnementAvecEngagement;
 import model.AbonnementSansEngagement;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.UUID;
+import java.util.Date;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class AbonnementDAOImpl implements AbonnementDAO {
 
@@ -68,9 +69,41 @@ public class AbonnementDAOImpl implements AbonnementDAO {
     }
 
     @Override
-    public List<Abonnement> findAll() throws Exception{
-        return new ArrayList<>();
+    public List<Abonnement> findAll() throws Exception {
+        List<Abonnement> abonnements = new ArrayList<>();
+        String sql = "SELECT * FROM Abonnement";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            ResultSet listeAbonnements = stmt.executeQuery();
+            while (listeAbonnements.next()) {
+                String id = listeAbonnements.getString("id");
+                String nomService = listeAbonnements.getString("nomService");
+                double montant = listeAbonnements.getDouble("montantMensuel");
+                String type = listeAbonnements.getString("typeAbonnement");
+
+                Abonnement ab;
+                if ("AvecEngagement".equals(type)) {
+                    int duree = listeAbonnements.getInt("dureeEngagementMois");
+                    java.sql.Date dateFinSql = listeAbonnements.getDate("dateFin");
+                    java.util.Date dateFin = dateFinSql != null ? new java.util.Date(dateFinSql.getTime()) : null;
+                    ab = new AbonnementAvecEngagement(nomService, montant, dateFin, duree);
+                } else {
+                    ab = new AbonnementSansEngagement(nomService, montant);
+                }
+
+                java.sql.Date dateDebutSql = listeAbonnements.getDate("dateDebut");
+                ab.setDateDebut(dateDebutSql != null ? new java.util.Date(dateDebutSql.getTime()) : null);
+                ab.setDateFin(listeAbonnements.getDate("dateFin") != null ? new java.util.Date(rs.getDate("dateFin").getTime()) : null);
+                ab.setId(UUID.fromString(id));
+
+                abonnements.add(ab);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return abonnements;
     }
+
 
     @Override
     public void update(Abonnement abonnement) throws Exception {
