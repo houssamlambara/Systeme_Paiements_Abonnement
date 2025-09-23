@@ -21,7 +21,7 @@ public class AbonnementService {
 
     };
 
-    public void creeAbonnementSansEngagement(String nomService, Double montantMensuel) throws Exception {
+    public void creeAbonnementSansEngagement(String nomService, Double montantMensuel) {
         AbonnementSansEngagement abonnementSansEngagement = new AbonnementSansEngagement(nomService,montantMensuel);
         abonnementDAO.create(abonnementSansEngagement);
 
@@ -31,9 +31,10 @@ public class AbonnementService {
 
     };
 
-    public void supprimerAbonnement(){
+    public void supprimerAbonnement(String id) throws Exception {
+        abonnementDAO.delete(id);
+    }
 
-    };
 
     public void resilierAbonnement(){
 

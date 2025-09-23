@@ -20,4 +20,7 @@ public class AbonnementController {
         abonnementService.creeAbonnementSansEngagement(nomService, montantMensuel);
     }
 
+    public void supprimerAbonnement(String id) throws Exception {
+        abonnementService.supprimerAbonnement(id);
+    }
 }

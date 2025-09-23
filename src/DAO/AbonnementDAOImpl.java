@@ -78,8 +78,15 @@ public class AbonnementDAOImpl implements AbonnementDAO {
     }
 
     @Override
-    public void delete(String id) throws Exception{
-
+    public void delete(String id) throws Exception {
+        try (PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM Abonnement WHERE id = ?")) {
+            stmt.setString(1, id.trim());
+            stmt.executeUpdate();
+            System.out.println("Opération de suppression effectuée !");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

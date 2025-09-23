@@ -68,8 +68,8 @@ public class MainController {
                 System.out.println("Modification d’un abonnement...");
                 break;
             case 3:
-                System.out.println("Suppression d’un abonnement...");
-                break;
+                supprimerAbonnement();
+            break;
             case 4:
                 System.out.println("Affichage des paiements...");
                 break;
@@ -123,6 +123,16 @@ public class MainController {
 
         abonnementController.creeAbonnementSansEngagement(nomService, montantMensuel);
 
+    }
+
+    private void supprimerAbonnement() {
+        try {
+            System.out.println("Entrer l'ID de l'abonnement à supprimer :");
+            String id = scanner.nextLine().trim();
+            abonnementController.supprimerAbonnement(id);
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la suppression : " + e.getMessage());
+        }
     }
 
 
