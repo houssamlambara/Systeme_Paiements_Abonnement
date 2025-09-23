@@ -73,8 +73,22 @@ public class AbonnementDAOImpl implements AbonnementDAO {
     }
 
     @Override
-    public void update(Abonnement abonnement) throws Exception{
+    public void update(Abonnement abonnement) throws Exception {
+        String sql = "UPDATE Abonnement SET nomService = ?, montantMensuel = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, abonnement.getNomService());
+            stmt.setDouble(2, abonnement.getMontantMensuel());
+            stmt.setString(3, abonnement.getId().toString());
 
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Abonnement modifié avec succès !");
+            } else {
+                System.out.println("Aucun abonnement trouvé avec cet ID.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

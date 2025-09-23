@@ -65,7 +65,7 @@ public class MainController {
                 System.out.println("Liste des abonnements...");
                 break;
             case 2:
-                System.out.println("Modification d’un abonnement...");
+                modifierAbonnement();
                 break;
             case 3:
                 supprimerAbonnement();
@@ -123,6 +123,21 @@ public class MainController {
 
         abonnementController.creeAbonnementSansEngagement(nomService, montantMensuel);
 
+    }
+
+    private void modifierAbonnement() {
+        try {
+            System.out.println("Entrer l'ID de l'abonnement à modifier :");
+            String id = scanner.nextLine().trim();
+            System.out.println("Entrer le nouveau nom du service :");
+            String nouveauNomService = scanner.nextLine();
+            System.out.println("Entrer le nouveau montant :");
+            Double nouveauMontant = Double.parseDouble(scanner.nextLine().trim());
+
+            abonnementController.modifierAbonnement(id, nouveauNomService, nouveauMontant);
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la modification : " + e.getMessage());
+        }
     }
 
     private void supprimerAbonnement() {

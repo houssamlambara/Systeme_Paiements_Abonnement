@@ -27,9 +27,10 @@ public class AbonnementService {
 
     }
 
-    public void modifierAbonnement(){
+    public void modifierAbonnement(Abonnement abonnement) throws Exception {
+        abonnementDAO.update(abonnement);
+    }
 
-    };
 
     public void supprimerAbonnement(String id) throws Exception {
         abonnementDAO.delete(id);

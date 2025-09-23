@@ -1,7 +1,9 @@
 package controller;
 
 import service.AbonnementService;
-
+import model.AbonnementAvecEngagement;
+import model.AbonnementSansEngagement;
+import java.util.UUID;
 import java.util.Date;
 
 public class AbonnementController {
@@ -20,7 +22,17 @@ public class AbonnementController {
         abonnementService.creeAbonnementSansEngagement(nomService, montantMensuel);
     }
 
+    public void modifierAbonnement(String id, String nouveauNomService, Double nouveauMontant) throws Exception {
+        AbonnementSansEngagement abonnement = new AbonnementSansEngagement(nouveauNomService, nouveauMontant);
+        abonnement.setId(UUID.fromString(id));
+        abonnementService.modifierAbonnement(abonnement);
+    }
+
+
+
     public void supprimerAbonnement(String id) throws Exception {
         abonnementService.supprimerAbonnement(id);
     }
+
+
 }
