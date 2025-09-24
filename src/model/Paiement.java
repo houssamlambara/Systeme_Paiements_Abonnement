@@ -1,6 +1,7 @@
 package model;
 
 import enums.StatutPaiement;
+import enums.TypePaiement;
 
 import java.util.Date;
 import java.util.UUID;
@@ -10,18 +11,23 @@ public class Paiement {
     private String idAbonnement;
     private Date dateEcheance;
     private Date datePaiement;
-    private String typePaiement;
-    private StatutPaiement statut = null;
+    private TypePaiement typePaiement;
+    private StatutPaiement statut;
 
-    public Paiement(String idAbonnement, Date dateEcheance, String typePaiement){
+    public void setTypePaiement(TypePaiement typePaiement) {
+        this.typePaiement = typePaiement;
+    }
+
+    public Paiement(String idAbonnement, Date dateEcheance, TypePaiement typePaiement){
         this.idPaiement = UUID.randomUUID();
         this.idAbonnement = idAbonnement;
         this.dateEcheance = dateEcheance;
         this.typePaiement = typePaiement;
-        this.statut = StatutPaiement.NON_PAYE;
+        this.statut = StatutPaiement.PAYE;
+        this.datePaiement = null;
     }
 
-    public Paiement( String idAbonnement, Date dateEcheance, Date datePaiement, String typePaiement, StatutPaiement statut) {
+    public Paiement( String idAbonnement, Date dateEcheance, Date datePaiement, TypePaiement typePaiement, StatutPaiement statut) {
         this.idPaiement = UUID.randomUUID();
         this.idAbonnement = idAbonnement;
         this.dateEcheance = dateEcheance;
@@ -62,12 +68,8 @@ public class Paiement {
         this.datePaiement = datePaiement;
     }
 
-    public String getTypePaiement() {
+    public TypePaiement getTypePaiement() {
         return typePaiement;
-    }
-
-    public void setTypePaiement(String typePaiement) {
-        this.typePaiement = typePaiement;
     }
 
     public StatutPaiement getStatut() {

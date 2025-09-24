@@ -81,22 +81,22 @@ public class AbonnementDAOImpl implements AbonnementDAO {
                 double montant = listeAbonnements.getDouble("montantMensuel");
                 String type = listeAbonnements.getString("typeAbonnement");
 
-                Abonnement ab;
+                Abonnement abonnement;
                 if ("AvecEngagement".equals(type)) {
                     int duree = listeAbonnements.getInt("dureeEngagementMois");
                     java.sql.Date dateFinSql = listeAbonnements.getDate("dateFin");
                     java.util.Date dateFin = dateFinSql != null ? new java.util.Date(dateFinSql.getTime()) : null;
-                    ab = new AbonnementAvecEngagement(nomService, montant, dateFin, duree);
+                    abonnement = new AbonnementAvecEngagement(nomService, montant, dateFin, duree);
                 } else {
-                    ab = new AbonnementSansEngagement(nomService, montant);
+                    abonnement = new AbonnementSansEngagement(nomService, montant);
                 }
 
                 java.sql.Date dateDebutSql = listeAbonnements.getDate("dateDebut");
-                ab.setDateDebut(dateDebutSql != null ? new java.util.Date(dateDebutSql.getTime()) : null);
-                ab.setDateFin(listeAbonnements.getDate("dateFin") != null ? new java.util.Date(rs.getDate("dateFin").getTime()) : null);
-                ab.setId(UUID.fromString(id));
+                abonnement.setDateDebut(dateDebutSql != null ? new java.util.Date(dateDebutSql.getTime()) : null);
+                abonnement.setDateFin(listeAbonnements.getDate("dateFin") != null ? new java.util.Date(listeAbonnements.getDate("dateFin").getTime()) : null);
+                abonnement.setId(UUID.fromString(id));
 
-                abonnements.add(ab);
+                abonnements.add(abonnement);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
