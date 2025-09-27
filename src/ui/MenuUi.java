@@ -31,11 +31,13 @@ public class MenuUi {
                 System.out.println("2. Modifier un abonnement");
                 System.out.println("3. Supprimer un abonnement");
                 System.out.println("4. Afficher paiements d'un abonnement");
-                System.out.println("5. Enregistrer un paiement");
-                System.out.println("6. Paiements manqués avec le montant total");
-                System.out.println("7. Afiche la Somme payée d’un abonnement");
-                System.out.println("8. Afficher les 5 derniers paiements");
-                System.out.println("9. Rapports financiers");
+                System.out.println("5. Modifier un Paiement");
+                System.out.println("6. Supprimer un Paiement");
+                System.out.println("7. Enregistrer un paiement");
+                System.out.println("8. Paiements manqués avec le montant total");
+                System.out.println("9. Afiche la Somme payée d’un abonnement");
+                System.out.println("10. Afficher les 5 derniers paiements");
+                System.out.println("11. Rapports financiers");
                 System.out.println("0. Retour");
                 System.out.print("Votre choix : ");
                 choix = scanner.nextInt();
