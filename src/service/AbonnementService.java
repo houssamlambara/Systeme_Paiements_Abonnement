@@ -10,14 +10,13 @@ import model.AbonnementSansEngagement;
 import model.Paiement;
 
 import java.util.Date;
+import java.util.List;
 
 public class AbonnementService {
 
     AbonnementDAOImpl abonnementDAO = new AbonnementDAOImpl();
 
-    public void creerAbonnement(String nomService,Double montantMensuel,
-                                Date dateFin,
-                                Integer dureeEngagementMois){
+    public void creerAbonnement(String nomService,Double montantMensuel, Date dateFin, Integer dureeEngagementMois){
 
     AbonnementAvecEngagement abonnementAvecEngagement = new AbonnementAvecEngagement(nomService,montantMensuel, dateFin, dureeEngagementMois);
     abonnementDAO.create(abonnementAvecEngagement);
@@ -58,8 +57,15 @@ public class AbonnementService {
     };
 
     public void listerTous(){
-
-    };
+        try {
+            List<Abonnement> abonnements = abonnementDAO.findAll();
+            abonnements.forEach(a -> System.out.println(
+                    a.getId() + " | " + a.getNomService() + " | " + a.getMontantMensuel() + " | " + a.getTypeAbonnement()
+            ));
+        } catch (Exception e){
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
 
     public void listerActifs(){
 

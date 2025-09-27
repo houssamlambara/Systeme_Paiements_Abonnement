@@ -13,12 +13,8 @@ public class PaiementService {
 
     PaiementDAOImpl paiementDAO = new PaiementDAOImpl();
 
-    public void enregistrerPaiement(String idAbonnement,
-                                    Date dateEcheance,
-                                    TypePaiement typePaiement) {
-
+    public void enregistrerPaiement(String idAbonnement, Date dateEcheance, TypePaiement typePaiement) {
         Paiement paiement = new Paiement(idAbonnement, dateEcheance, typePaiement);
-
         try {
             paiementDAO.create(paiement);
             System.out.println("Paiement créé avec succès !");
@@ -34,7 +30,6 @@ public class PaiementService {
             paiement.setTypePaiement(typePaiement);
             paiement.setStatut(statut);
             paiementDAO.update(paiement);
-//            System.out.println("Paiement modifié avec succès !");
         } catch (Exception e) {
             System.out.println("Erreur lors de la modification : " + e.getMessage());
         }

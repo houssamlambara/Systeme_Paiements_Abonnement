@@ -75,27 +75,30 @@ public class PaiementDAOImpl {
     }
 
     public Paiement findById(String idPaiement) throws Exception {
-        String sql = "SELECT * FROM Paiement WHERE idPaiement = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, idPaiement);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    Paiement paiement = new Paiement(
-                            rs.getString("idAbonnement"),
-                            rs.getDate("dateEcheance"),
-                            rs.getDate("datePaiement"),
-                            enums.TypePaiement.valueOf(rs.getString("typePaiement")),
-                            enums.StatutPaiement.valueOf(rs.getString("statut"))
-                    );
-                    // On force l'id du paiement depuis la DB
-                    paiement.setIdPaiement(java.util.UUID.fromString(rs.getString("idPaiement")));
-                    return paiement;
-                }
+        return findAll().stream()
+                .filter(p -> p.getIdPaiement().toString().equals(idPaiement))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<Paiement> findAll() throws Exception {
+        List<Paiement> paiements = new ArrayList<>();
+        String sql = "SELECT * FROM Paiement";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)){
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Paiement p = new Paiement(
+                        rs.getString("idAbonnement"),
+                        rs.getDate("dateEcheance"),
+                        rs.getDate("datePaiement"),
+                        TypePaiement.valueOf(rs.getString("typePaiement")),
+                        StatutPaiement.valueOf(rs.getString("statut"))
+                );
+                p.setIdPaiement(UUID.fromString(rs.getString("idPaiement")));
+                paiements.add(p);
             }
-        } catch (Exception e) {
-            throw new RuntimeException("Erreur lors de la recherche du paiement : " + e.getMessage(), e);
         }
-        return null;
+        return paiements;
     }
 
     public List<Paiement> findByAbonnement(String idAbonnement) throws Exception {
@@ -112,7 +115,6 @@ public class PaiementDAOImpl {
                         TypePaiement.valueOf(rs.getString("typePaiement")),
                         StatutPaiement.valueOf(rs.getString("statut"))
                 );
-                // Il faut setter l’UUID du paiement manuellement
                 p.setIdPaiement(UUID.fromString(rs.getString("idPaiement")));
                 paiements.add(p);
             }
