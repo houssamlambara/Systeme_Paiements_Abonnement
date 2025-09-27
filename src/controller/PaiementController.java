@@ -26,4 +26,8 @@ public class PaiementController {
     public void enregistrerPaiement(String idAbonnement, Date dateEcheance) {
         paiementService.enregistrerPaiement(idAbonnement, dateEcheance, TypePaiement.CARTE_BANCAIRE);
     }
+
+    public void afficherTousLesPaiements() {
+        paiementService.afficherTousLesPaiements();
+    }
 }

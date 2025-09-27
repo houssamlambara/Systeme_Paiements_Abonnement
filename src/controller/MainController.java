@@ -82,24 +82,27 @@ public class MainController {
                 afficherPaiementsAbonnement();
                 break;
             case 5:
-                modifierPaiement();
+                afficherTousLesPaiements();
                 break;
             case 6:
-                supprimerPaiement();
+                modifierPaiement();
                 break;
             case 7:
-                enregistrerPaiement();
+                supprimerPaiement();
                 break;
             case 8:
-                System.out.println("Paiements manqués + total impayé...");
+                enregistrerPaiement();
                 break;
             case 9:
-                System.out.println("Somme payée de l’abonnement...");
+                System.out.println("Paiements manqués + total impayé...");
                 break;
             case 10:
-                System.out.println("Affichage des 5 derniers paiements...");
+                System.out.println("Somme payée de l’abonnement...");
                 break;
             case 11:
+                System.out.println("Affichage des 5 derniers paiements...");
+                break;
+            case 12:
                 System.out.println("Rapports financiers...");
                 break;
             case 0:
@@ -168,6 +171,11 @@ public class MainController {
         System.out.println("Entrer l'ID de l'abonnement pour voir ses paiements :");
         String idAbonnement = scanner.nextLine().trim();
         paiementController.afficherPaiementsParAbonnement(idAbonnement);
+    }
+
+    private void afficherTousLesPaiements() {
+        System.out.println("===== Tous les paiements =====");
+        paiementController.afficherTousLesPaiements();
     }
 
     private void enregistrerPaiement() {
@@ -251,4 +259,5 @@ public class MainController {
             System.out.println("Erreur lors de la suppression : " + e.getMessage());
         }
     }
+
 }

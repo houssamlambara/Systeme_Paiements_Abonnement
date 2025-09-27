@@ -56,6 +56,31 @@ public class PaiementService {
         }
     }
 
+    public void afficherTousLesPaiements() {
+        try {
+            List<Paiement> paiements = paiementDAO.findAll(); // récupère tous les paiements depuis la DB
+
+            if (paiements.isEmpty()) {
+                System.out.println("Aucun paiement trouvé.");
+                return;
+            }
+
+            // Utilisation de Stream API pour parcourir et afficher
+            paiements.stream()
+                    .forEach(p -> System.out.println(
+                            "ID Paiement: " + p.getIdPaiement() +
+                                    " | ID Abonnement: " + p.getIdAbonnement() +
+                                    " | Échéance: " + p.getDateEcheance() +
+                                    " | Paiement: " + p.getDatePaiement() +
+                                    " | Type: " + p.getTypePaiement() +
+                                    " | Statut: " + p.getStatut()
+                    ));
+
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'affichage de tous les paiements : " + e.getMessage());
+        }
+    }
+
     public void detecterImpayes(){
 
     };
